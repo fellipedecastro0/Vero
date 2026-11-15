@@ -106,8 +106,47 @@ export default function ChecaTool() {
       setResultadoPix(decodificado);
       falarTexto(
         decodificado.alertaFraude ||
-        `Código verificado com sucesso. Beneficiário: ${decodificado.beneficiario}. Integridade CRC-16 válida.`
+          (decodificado.tipo === 'boleto'
+            ? `Boleto identificado. Banco emissor: ${decodificado.beneficiario}.`
+            : `Código verificado com sucesso. Beneficiário: ${decodificado.beneficiario}. Integridade CRC-16 válida.`)
       );
+    } else if (abaAtiva === 'link') {
+      try {
+        const res = await fetch('/api/check-url', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url: inputTexto.trim() })
+        });
+        const data = (await res.json()) as {
+          suspeito?: boolean;
+          motivos?: string[];
+          nivelRisco?: 'alto' | 'medio' | 'baixo';
+          acaoRecomendada?: string;
+        };
+
+        if (!res.ok) {
+          throw new Error('Falha ao consultar /api/check-url');
+        }
+
+        const nivel = data.nivelRisco || 'baixo';
+        const motivos = data.motivos || [];
+        const titulo =
+          nivel === 'alto'
+            ? '🚨 Alto Risco: Link com sinais claros de fraude ou site clone!'
+            : nivel === 'medio'
+              ? '⚠️ Atenção: Este endereço tem características suspeitas'
+              : '✓ Nenhum padrão conhecido de phishing detectado no endereço';
+        const acao =
+          data.acaoRecomendada ||
+          'Sempre confira o domínio principal antes da primeira barra e evite digitar senhas por links recebidos.';
+
+        setResultadoMsg({ nivel, titulo, sinais: motivos, acao });
+        falarTexto(`${titulo}. ${acao}`);
+      } catch {
+        const fallback = analisarMensagem(inputTexto);
+        setResultadoMsg(fallback);
+        falarTexto(`${fallback.titulo}. ${fallback.acao}`);
+      }
     } else if (abaAtiva === 'leak') {
       try {
         const isEmail = inputTexto.includes('@');
@@ -126,7 +165,6 @@ export default function ChecaTool() {
         });
       }
     } else {
-      // msg ou link
       const resultado = analisarMensagem(inputTexto);
       setResultadoMsg(resultado);
       falarTexto(`${resultado.titulo}. ${resultado.acao}`);
@@ -356,6 +394,16 @@ export default function ChecaTool() {
         <button
           type="button"
           onClick={() => {
+            setAbaAtiva('pix');
+            setInputTexto('23793381286000000000300000004001195000000034900');
+            setBeneficiarioEsperado('Enel Energia');
+          }}
+        >
+          Testar Boleto Adulterado
+        </button>
+        <button
+          type="button"
+          onClick={() => {
             setAbaAtiva('leak');
             setInputTexto('teste@exemplo.com');
           }}
@@ -390,7 +438,11 @@ export default function ChecaTool() {
               fontSize: '12px',
               fontWeight: 700
             }}>
-              CRC-16: {resultadoPix.isValidCrc ? 'Válido ✓' : 'Corrompido / Inválido ✗'}
+              {resultadoPix.tipo === 'boleto'
+                ? resultadoPix.isValidCrc
+                  ? 'Linha Digitável Válida ✓'
+                  : 'Formato Inválido ✗'
+                : `CRC-16: ${resultadoPix.isValidCrc ? 'Válido ✓' : 'Corrompido / Inválido ✗'}`}
             </span>
           </div>
 
@@ -402,7 +454,9 @@ export default function ChecaTool() {
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', fontSize: '13px', marginTop: '6px' }}>
             <div>
-              <span style={{ color: 'var(--muted)' }}>Beneficiário Real:</span>
+              <span style={{ color: 'var(--muted)' }}>
+                {resultadoPix.tipo === 'boleto' ? 'Banco Emissor (Código):' : 'Beneficiário Real:'}
+              </span>
               <div style={{ fontWeight: 700, fontSize: '15px' }}>{resultadoPix.beneficiario}</div>
             </div>
             <div>
@@ -412,12 +466,24 @@ export default function ChecaTool() {
               </div>
             </div>
             <div>
-              <span style={{ color: 'var(--muted)' }}>Cidade / Origem:</span>
-              <div style={{ fontWeight: 600 }}>{resultadoPix.cidade || 'Não informada'}</div>
+              <span style={{ color: 'var(--muted)' }}>
+                {resultadoPix.tipo === 'boleto' ? 'Vencimento Estimado:' : 'Cidade / Origem:'}
+              </span>
+              <div style={{ fontWeight: 600 }}>
+                {resultadoPix.tipo === 'boleto'
+                  ? resultadoPix.vencimentoBoleto || 'Não informado'
+                  : resultadoPix.cidade || 'Não informada'}
+              </div>
             </div>
             <div>
-              <span style={{ color: 'var(--muted)' }}>Integridade EMV:</span>
-              <div style={{ fontWeight: 600 }}>Checksum {resultadoPix.crcCalculado}</div>
+              <span style={{ color: 'var(--muted)' }}>
+                {resultadoPix.tipo === 'boleto' ? 'Validação FEBRABAN:' : 'Integridade EMV:'}
+              </span>
+              <div style={{ fontWeight: 600 }}>
+                {resultadoPix.tipo === 'boleto'
+                  ? resultadoPix.crcCalculado
+                  : `Checksum ${resultadoPix.crcCalculado}`}
+              </div>
             </div>
           </div>
         </div>
@@ -431,7 +497,7 @@ export default function ChecaTool() {
             <button
               className="listen"
               type="button"
-              onClick={() => falarTexto(`${resultadoMsg.titulo}. ${resultadoMsg.acao}`)}
+              onClick={() => falarTexto(`${resultadoMsg.titulo}. ${resultadoMsg.acao}`, false, true)}
               style={{ width: 34, height: 34 }}
             >
               <svg className="ic" style={{ width: 16, height: 16 }}><use href="#i-volume" /></svg>
