@@ -6,6 +6,8 @@ export interface MensagemDesafio {
   remetente: string;
   isGolpe: boolean;
   texto: string;
+  /** Trechos exatos do texto ou remetente que devem ser grifados no Raio-X após a resposta */
+  trechosSuspeitos?: string[];
   pistas: string[];
   explicacao: string;
   nivelDificuldade: 'iniciante' | 'intermediario' | 'avancado';
@@ -24,8 +26,89 @@ export interface MensagemDesafio {
     assunto: string;
     dataHora: string;
     temAnexo?: boolean;
+    anexoNome?: string;
     alertaSelo?: string;
+    marcaLogo?: string;
+    corMarca?: string;
+    corTextoMarca?: string;
+    destaqueCard?: string;
+    botaoCtaTexto?: string;
+    linkCtaPreview?: string;
   };
+}
+
+export interface SiteOpcao {
+  url: string;
+  tituloPagina: string;
+  subtitulo: string;
+  temCadeadoSsl: boolean;
+  isVerdadeiro: boolean;
+  destaqueDominio: string;
+}
+
+export interface DesafioSiteClone {
+  id: string;
+  marca: string;
+  contexto: string;
+  opcoes: [SiteOpcao, SiteOpcao];
+  explicacao: string;
+  dicaVisual: string;
+}
+
+export interface DesafioPixBoleto {
+  id: string;
+  tipo: 'Pix' | 'Boleto';
+  contextoCompra: string;
+  esperadoNome: string;
+  valor: number;
+  recebedorRealNome: string;
+  recebedorDocumento: string;
+  bancoDestino: string;
+  chaveOuLinha: string;
+  crcStatus: 'Válido' | 'Adulterado';
+  isSeguroPagar: boolean;
+  pistas: string[];
+  explicacao: string;
+}
+
+export interface OpcaoVishing {
+  texto: string;
+  correta: boolean;
+}
+
+export interface DesafioLigacaoVishing {
+  id: string;
+  chamadorDisplay: string;
+  numeroDisplay: string;
+  isGolpe: boolean;
+  falaScript: string;
+  opcoes: [OpcaoVishing, OpcaoVishing];
+  pistas: string[];
+  explicacao: string;
+}
+
+export interface ItemCartilhaGolpe {
+  id: string;
+  titulo: string;
+  apelido: string;
+  risco: 'Crítico' | 'Alto';
+  imagem?: string;
+  comoFunciona: string;
+  sinalAlerta: string;
+  comoEvitar: string;
+}
+
+export interface ProtocoloEmergencia {
+  id: 'pix' | 'link' | 'whatsapp' | 'celular';
+  titulo: string;
+  janelaCritica: string;
+  resumo: string;
+  passos: {
+    titulo: string;
+    detalhe: string;
+    linkOficialLabel?: string;
+    linkOficialUrl?: string;
+  }[];
 }
 
 export interface ItemRankingComunidade {
