@@ -1,4 +1,5 @@
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import EmergencyGuide from '@/components/EmergencyGuide';
 import Link from 'next/link';
 
@@ -63,12 +64,10 @@ export default function EmergenciaPage() {
         </div>
       </main>
 
-      <footer>
-        <div className="wrap">
-          <span>Vero · Projeto de Extensão Universitária (ACE - 4º Semestre) · UNIEURO</span>
-          <span>Em emergências policiais, ligue 190 ou procure a Delegacia Eletrônica do seu estado.</span>
-        </div>
-      </footer>
+      <Footer
+        leftContent="Vero · Projeto de Extensão Universitária (ACE - 4º Semestre) · CEUB"
+        rightText="Em emergências policiais, ligue 190 ou procure a Delegacia Eletrônica"
+      />
     </>
   );
 }

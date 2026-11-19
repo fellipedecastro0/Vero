@@ -1027,7 +1027,7 @@ export default function PhishingGame({
             >
               <div>
                 <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--green)', textTransform: 'uppercase' }}>
-                  Projeto de Extensão Universitária ACE · UNIEURO
+                  Projeto de Extensão Universitária ACE · CEUB
                 </span>
                 <h2 style={{ margin: '4px 0 0', fontSize: '1.4rem' }}>Relatório de Cidadania Digital</h2>
                 <small style={{ color: 'var(--muted)' }}>

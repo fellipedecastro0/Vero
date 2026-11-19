@@ -27,47 +27,47 @@ const CATALOGO_JOGOS: {
   duracao: string;
   tag: string;
 }[] = [
-  {
-    id: 'caca-golpes',
-    titulo: '1. Caça-Golpes (Mensagens)',
-    subtitulo:
-      'WhatsApp de falso parente, SMS dos Correios e E-mail bancário. Decida na hora e veja o Raio-X das armadilhas.',
-    icone: '#i-msg',
-    imagem: '/images/games/caca-golpes.jpg',
-    duracao: '3 min · 18 cenários',
-    tag: 'Mais jogado'
-  },
-  {
-    id: 'site-clone',
-    titulo: '2. Qual é o Site Verdadeiro?',
-    subtitulo:
-      'Duelo lado a lado entre o endereço oficial e um clone quase idêntico. Aprenda a ler o domínio antes da barra.',
-    icone: '#i-browser',
-    imagem: '/images/games/site-clone.jpg',
-    duracao: '2 min · 5 duelos',
-    tag: 'Novo'
-  },
-  {
-    id: 'pix-boleto',
-    titulo: '3. Hora de Pagar (Pix & Boleto)',
-    subtitulo:
-      'Audite nome do recebedor, CPF/CNPJ, banco e CRC antes de digitar a senha do banco.',
-    icone: '#i-qr',
-    imagem: '/images/games/pix-boleto.jpg',
-    duracao: '3 min · 5 comprovantes',
-    tag: 'Novo'
-  },
-  {
-    id: 'vishing',
-    titulo: '4. Ligação Suspeita (Falsa Central)',
-    subtitulo:
-      'Simulador com voz em português: atenda chamadas da "central do banco" ou suporte técnico e escolha como reagir.',
-    icone: '#i-phone',
-    imagem: '/images/games/vishing.jpg',
-    duracao: '2 min · Áudio + Texto',
-    tag: 'Novo'
-  }
-];
+    {
+      id: 'caca-golpes',
+      titulo: '1. Caça-Golpes (Mensagens)',
+      subtitulo:
+        'WhatsApp de falso parente, SMS dos Correios e E-mail bancário. Decida na hora e veja o Raio-X das armadilhas.',
+      icone: '#i-msg',
+      imagem: '/images/games/caca-golpes.jpg',
+      duracao: '3 min · 18 cenários',
+      tag: 'Mais jogado'
+    },
+    {
+      id: 'site-clone',
+      titulo: '2. Qual é o Site Verdadeiro?',
+      subtitulo:
+        'Duelo lado a lado entre o endereço oficial e um clone quase idêntico. Aprenda a ler o domínio antes da barra.',
+      icone: '#i-browser',
+      imagem: '/images/games/site-clone.jpg',
+      duracao: '2 min · 5 duelos',
+      tag: 'Novo'
+    },
+    {
+      id: 'pix-boleto',
+      titulo: '3. Hora de Pagar (Pix & Boleto)',
+      subtitulo:
+        'Audite nome do recebedor, CPF/CNPJ, banco e CRC antes de digitar a senha do banco.',
+      icone: '#i-qr',
+      imagem: '/images/games/pix-boleto.jpg',
+      duracao: '3 min · 5 comprovantes',
+      tag: 'Novo'
+    },
+    {
+      id: 'vishing',
+      titulo: '4. Ligação Suspeita (Falsa Central)',
+      subtitulo:
+        'Simulador com voz em português: atenda chamadas da "central do banco" ou suporte técnico e escolha como reagir.',
+      icone: '#i-phone',
+      imagem: '/images/games/vishing.jpg',
+      duracao: '2 min · Áudio + Texto',
+      tag: 'Novo'
+    }
+  ];
 
 export default function MinigamesHub() {
   const [progresso, setProgresso] = useState<VeroProgresso>(PROGRESSO_PADRAO);
@@ -213,210 +213,210 @@ export default function MinigamesHub() {
   return (
     <div style={{ width: '100%' }}>
       <div className="no-print">
-      {/* Barra de Progresso Real Persistente */}
-      <div className="hub-stats" aria-label="Resumo do seu treino salvo neste aparelho">
-        <div className="stat-box dark">
-          <small>Score de Proteção</small>
-          <strong>{progresso.scoreCidadania}/100</strong>
+        {/* Barra de Progresso Real Persistente */}
+        <div className="hub-stats" aria-label="Resumo do seu treino salvo neste aparelho">
+          <div className="stat-box dark">
+            <small>Score de Proteção</small>
+            <strong>{progresso.scoreCidadania}/100</strong>
+          </div>
+          <div className="stat-box">
+            <small>Pontos Acumulados</small>
+            <strong>{progresso.pontosTotais} pts</strong>
+          </div>
+          <div className="stat-box">
+            <small>Ofensiva Ativa</small>
+            <strong>
+              {progresso.ofensivaDias} {progresso.ofensivaDias === 1 ? 'dia' : 'dias'}
+            </strong>
+          </div>
+          <div className="stat-box">
+            <small>Medalhas Conquistadas</small>
+            <strong>{progresso.medalhas.length}</strong>
+          </div>
         </div>
-        <div className="stat-box">
-          <small>Pontos Acumulados</small>
-          <strong>{progresso.pontosTotais} pts</strong>
-        </div>
-        <div className="stat-box">
-          <small>Ofensiva Ativa</small>
-          <strong>
-            {progresso.ofensivaDias} {progresso.ofensivaDias === 1 ? 'dia' : 'dias'}
-          </strong>
-        </div>
-        <div className="stat-box">
-          <small>Medalhas Conquistadas</small>
-          <strong>{progresso.medalhas.length}</strong>
-        </div>
-      </div>
 
-      {/* Medalhas se já houver */}
-      {progresso.medalhas.length > 0 && (
+        {/* Medalhas se já houver */}
+        {progresso.medalhas.length > 0 && (
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: 8,
+              marginBottom: 20,
+              alignItems: 'center'
+            }}
+          >
+            <span style={{ fontSize: '.85rem', fontWeight: 700, color: 'var(--muted)' }}>
+              Suas conquistas:
+            </span>
+            {progresso.medalhas.map((m) => (
+              <span
+                key={m}
+                className="pill"
+                style={{ background: 'var(--gsoft)', color: 'var(--gtext)', fontSize: '.8rem' }}
+              >
+                ★ {m}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {/* Grid dos 4 Minigames */}
+        <div className="hub-grid">
+          {CATALOGO_JOGOS.map((jogo) => {
+            const stats = progresso.jogosConcluidos[jogo.id];
+            return (
+              <button
+                key={jogo.id}
+                type="button"
+                className="game-card"
+                onClick={() => abrirJogo(jogo.id)}
+              >
+                <div className="game-thumb">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={jogo.imagem} alt={jogo.titulo} loading="lazy" />
+                </div>
+
+                <div className="gc-top">
+                  <div className="gc-ico" aria-hidden="true">
+                    <svg className="ic">
+                      <use href={jogo.icone} />
+                    </svg>
+                  </div>
+                  <span
+                    className="pill"
+                    style={{
+                      background: jogo.tag === 'Novo' ? 'var(--ink)' : 'var(--gsoft)',
+                      color: jogo.tag === 'Novo' ? 'var(--mint2)' : 'var(--gtext)',
+                      fontSize: '.78rem'
+                    }}
+                  >
+                    {jogo.tag}
+                  </span>
+                </div>
+
+                <div>
+                  <h3>{jogo.titulo}</h3>
+                  <p style={{ marginTop: 6 }}>{jogo.subtitulo}</p>
+                </div>
+
+                <div className="gc-foot">
+                  <span>
+                    {stats.jogadas > 0
+                      ? `Jogado ${stats.jogadas}x · Recorde ${stats.melhorScore}%`
+                      : jogo.duracao}
+                  </span>
+                  <span>Abrir Arena →</span>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Ações extras: Vero Família, Ouvir instrução e Modo Oficina ACE */}
         <div
           style={{
+            marginTop: 24,
+            background: '#fff',
+            borderRadius: 22,
+            padding: '20px 22px',
+            boxShadow: '0 0 0 1px var(--line)',
             display: 'flex',
             flexWrap: 'wrap',
-            gap: 8,
-            marginBottom: 20,
-            alignItems: 'center'
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: 14
           }}
         >
-          <span style={{ fontSize: '.85rem', fontWeight: 700, color: 'var(--muted)' }}>
-            Suas conquistas:
-          </span>
-          {progresso.medalhas.map((m) => (
-            <span
-              key={m}
-              className="pill"
-              style={{ background: 'var(--gsoft)', color: 'var(--gtext)', fontSize: '.8rem' }}
-            >
-              ★ {m}
+          <div style={{ maxWidth: 520 }}>
+            <strong style={{ fontFamily: 'var(--fd)', fontSize: '1.15rem', display: 'block' }}>
+              Vero Família &amp; Oficina Presencial ACE
+            </strong>
+            <span style={{ color: 'var(--muted)', fontSize: '.92rem' }}>
+              Compartilhe seu progresso com um familiar de confiança no WhatsApp ou abra o painel de
+              registro Antes/Depois para oficinas comunitárias.
             </span>
-          ))}
-        </div>
-      )}
+          </div>
 
-      {/* Grid dos 4 Minigames */}
-      <div className="hub-grid">
-        {CATALOGO_JOGOS.map((jogo) => {
-          const stats = progresso.jogosConcluidos[jogo.id];
-          return (
-            <button
-              key={jogo.id}
-              type="button"
-              className="game-card"
-              onClick={() => abrirJogo(jogo.id)}
-            >
-              <div className="game-thumb">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={jogo.imagem} alt={jogo.titulo} loading="lazy" />
-              </div>
-
-              <div className="gc-top">
-                <div className="gc-ico" aria-hidden="true">
-                  <svg className="ic">
-                    <use href={jogo.icone} />
-                  </svg>
-                </div>
-                <span
-                  className="pill"
-                  style={{
-                    background: jogo.tag === 'Novo' ? 'var(--ink)' : 'var(--gsoft)',
-                    color: jogo.tag === 'Novo' ? 'var(--mint2)' : 'var(--gtext)',
-                    fontSize: '.78rem'
-                  }}
-                >
-                  {jogo.tag}
-                </span>
-              </div>
-
-              <div>
-                <h3>{jogo.titulo}</h3>
-                <p style={{ marginTop: 6 }}>{jogo.subtitulo}</p>
-              </div>
-
-              <div className="gc-foot">
-                <span>
-                  {stats.jogadas > 0
-                    ? `Jogado ${stats.jogadas}x · Recorde ${stats.melhorScore}%`
-                    : jogo.duracao}
-                </span>
-                <span>Abrir Arena →</span>
-              </div>
-            </button>
-          );
-        })}
-      </div>
-
-      {/* Ações extras: Vero Família, Ouvir instrução e Modo Oficina ACE */}
-      <div
-        style={{
-          marginTop: 24,
-          background: '#fff',
-          borderRadius: 22,
-          padding: '20px 22px',
-          boxShadow: '0 0 0 1px var(--line)',
-          display: 'flex',
-          flexWrap: 'wrap',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: 14
-        }}
-      >
-        <div style={{ maxWidth: 520 }}>
-          <strong style={{ fontFamily: 'var(--fd)', fontSize: '1.15rem', display: 'block' }}>
-            Vero Família &amp; Oficina Presencial ACE
-          </strong>
-          <span style={{ color: 'var(--muted)', fontSize: '.92rem' }}>
-            Compartilhe seu progresso com um familiar de confiança no WhatsApp ou abra o painel de
-            registro Antes/Depois para oficinas comunitárias.
-          </span>
-        </div>
-
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
-          <button
-            type="button"
-            className="btn b-out"
-            onClick={() =>
-              falarTexto(
-                'Escolha um dos quatro minigames na tela para treinar contra golpes no WhatsApp, sites falsos, Pix e ligações suspeitas.',
-                false,
-                true
-              )
-            }
-          >
-            <svg className="ic" aria-hidden="true">
-              <use href="#i-volume" />
-            </svg>
-            Ouvir guia
-          </button>
-
-          <a
-            href={linkWhatsappGuardiao}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn b-go"
-            style={{ textDecoration: 'none' }}
-          >
-            <svg className="ic" aria-hidden="true">
-              <use href="#i-share" />
-            </svg>
-            Enviar ao Guardião
-          </a>
-
-          <button type="button" className="btn b-ink" onClick={() => abrirJogo('oficina')}>
-            <svg className="ic" aria-hidden="true">
-              <use href="#i-users" />
-            </svg>
-            Modo Oficina ACE
-          </button>
-
-          {progresso.totalRespondidos > 0 && (
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
             <button
               type="button"
               className="btn b-out"
-              onClick={() => window.print()}
-              title="Imprimir resumo de desempenho e medalhas"
-            >
-              Imprimir Selo Vero
-            </button>
-          )}
-
-          {progresso.totalRespondidos > 0 && (
-            <button
-              type="button"
-              className="btn b-out"
-              style={
-                confirmandoReset
-                  ? { borderColor: 'var(--red)', color: 'var(--redd)', background: 'var(--rsoft)' }
-                  : { color: 'var(--muted)' }
+              onClick={() =>
+                falarTexto(
+                  'Escolha um dos quatro minigames na tela para treinar contra golpes no WhatsApp, sites falsos, Pix e ligações suspeitas.',
+                  false,
+                  true
+                )
               }
-              onClick={() => {
-                if (!confirmandoReset) {
-                  setConfirmandoReset(true);
-                  return;
-                }
-                const zerado = resetarProgressoPessoal();
-                setProgresso(zerado);
-                setConfirmandoReset(false);
-              }}
             >
-              {confirmandoReset ? 'Confirmar: zerar pontos' : 'Zerar progresso'}
+              <svg className="ic" aria-hidden="true">
+                <use href="#i-volume" />
+              </svg>
+              Ouvir guia
             </button>
-          )}
+
+            <a
+              href={linkWhatsappGuardiao}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn b-go"
+              style={{ textDecoration: 'none' }}
+            >
+              <svg className="ic" aria-hidden="true">
+                <use href="#i-share" />
+              </svg>
+              Enviar ao Guardião
+            </a>
+
+            <button type="button" className="btn b-ink" onClick={() => abrirJogo('oficina')}>
+              <svg className="ic" aria-hidden="true">
+                <use href="#i-users" />
+              </svg>
+              Modo Oficina ACE
+            </button>
+
+            {progresso.totalRespondidos > 0 && (
+              <button
+                type="button"
+                className="btn b-out"
+                onClick={() => window.print()}
+                title="Imprimir resumo de desempenho e medalhas"
+              >
+                Imprimir Selo Vero
+              </button>
+            )}
+
+            {progresso.totalRespondidos > 0 && (
+              <button
+                type="button"
+                className="btn b-out"
+                style={
+                  confirmandoReset
+                    ? { borderColor: 'var(--red)', color: 'var(--redd)', background: 'var(--rsoft)' }
+                    : { color: 'var(--muted)' }
+                }
+                onClick={() => {
+                  if (!confirmandoReset) {
+                    setConfirmandoReset(true);
+                    return;
+                  }
+                  const zerado = resetarProgressoPessoal();
+                  setProgresso(zerado);
+                  setConfirmandoReset(false);
+                }}
+              >
+                {confirmandoReset ? 'Confirmar: zerar pontos' : 'Zerar progresso'}
+              </button>
+            )}
+          </div>
         </div>
-      </div>
       </div>
 
       {/* Versão limpa de impressão do Selo Vero */}
       <section className="print-only seal-print" aria-label="Certificado impresso Vero">
         <div style={{ fontSize: 12, fontWeight: 800, color: '#0B6E54', letterSpacing: '.08em', textTransform: 'uppercase' }}>
-          Vero · Cidadania Digital · Projeto de Extensão ACE UNIEURO
+          Vero · Cidadania Digital · Projeto de Extensão ACE CEUB
         </div>
         <h2 style={{ fontFamily: 'var(--fd)', fontSize: '2rem', margin: '10px 0 6px' }}>
           Selo de Treinamento contra Golpes Digitais
@@ -468,7 +468,7 @@ export default function MinigamesHub() {
         )}
 
         <div style={{ borderTop: '1px solid #D5D2CA', paddingTop: 12, fontSize: 11.5, color: '#45544E' }}>
-          Autores do Projeto ACE (4º Semestre): Fellipe de Castro &amp; Jhonatgan Magalhães · UNIEURO
+          Autores do Projeto ACE (4º Semestre): Fellipe de Castro &amp; Jhonatgan Magalhães · CEUB
         </div>
       </section>
     </div>

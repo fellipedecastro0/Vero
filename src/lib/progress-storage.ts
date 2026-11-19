@@ -43,7 +43,7 @@ export const PROGRESSO_PADRAO: VeroProgresso = {
   },
   medalhas: [],
   oficinaSessao: {
-    nomeLocal: 'Oficina de Extensão ACE · UNIEURO',
+    nomeLocal: 'Oficina de Extensão ACE · CEUB',
     registros: []
   }
 };

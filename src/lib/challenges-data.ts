@@ -602,7 +602,7 @@ export const DESAFIOS_PIX_BOLETO: DesafioPixBoleto[] = [
     id: 'pix-3',
     tipo: 'Boleto',
     contextoCompra: 'Você recebeu por WhatsApp o boleto de R$ 420 da mensalidade escolar / faculdade.',
-    esperadoNome: 'Centro Universitário UNIEURO / Escola',
+    esperadoNome: 'Centro Universitário CEUB / Escola',
     valor: 420.00,
     recebedorRealNome: 'BOLETO AVULSO · MARCOS A. LIMA ME',
     recebedorDocumento: 'CNPJ Desconhecido · Banco 336 (C6)',
