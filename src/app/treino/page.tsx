@@ -1,4 +1,5 @@
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import MinigamesHub from '@/components/MinigamesHub';
 import Link from 'next/link';
 
@@ -131,18 +132,16 @@ export default function TreinoPage() {
           >
             <p style={{ margin: 0 }}>
               Projeto de Extensão Universitária (ACE · 4º Semestre) · <b>Autores:</b> Fellipe de
-              Castro &amp; Jhonatgan Magalhaes · UNIEURO
+              Castro &amp; Jhonatgan Magalhaes · CEUB
             </p>
           </div>
         </div>
       </main>
 
-      <footer>
-        <div className="wrap">
-          <span>Vero · Projeto de Extensão Universitária (ACE - 4º Semestre) · UNIEURO</span>
-          <span>Todas as mensagens, sites e ligações simuladas são educativas.</span>
-        </div>
-      </footer>
+      <Footer
+        leftContent="Vero · Projeto de Extensão Universitária (ACE - 4º Semestre) · CEUB"
+        rightText="Todas as mensagens, sites e ligações simuladas são educativas"
+      />
     </>
   );
 }

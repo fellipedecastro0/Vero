@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import HeroPhone from '@/components/HeroPhone';
 import PhishingGame from '@/components/PhishingGame';
 import ChecaTool from '@/components/ChecaTool';
@@ -837,7 +838,7 @@ export default function SobrePage() {
                     <div className="dhead">
                       <div>
                         <b>Risco humano institucional</b>
-                        <small>Oficina ACE · UNIEURO (Simulação Didática)</small>
+                        <small>Oficina ACE · CEUB (Simulação Didática)</small>
                       </div>
                       <button
                         className="btn btn-green"
@@ -1232,16 +1233,15 @@ class LinkRiskService {
       </main>
 
       {/* RODAPÉ ACADÊMICO OFICIAL */}
-      <footer>
-        <div className="wrap">
-          <span>
-            Vero · Projeto de Extensão Universitária (ACE - 4º Semestre) · <b>Fellipe de Castro &amp; Jhonatgan Magalhaes</b> · UNIEURO
-          </span>
-          <span>
-            Todas as mensagens, marcas e bancos nos simuladores didáticos são fictícios para fins de conscientização social.
-          </span>
-        </div>
-      </footer>
+      <Footer
+        leftContent={
+          <>
+            Vero · Projeto de Extensão Universitária (ACE - 4º Semestre) ·{' '}
+            <b>Fellipe de Castro &amp; Jhonatgan Magalhaes</b> · CEUB
+          </>
+        }
+        rightText="Simuladores didáticos para fins de conscientização social"
+      />
     </>
   );
 }

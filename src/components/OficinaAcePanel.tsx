@@ -62,7 +62,7 @@ export default function OficinaAcePanel({
       <div className="arena-head">
         <div>
           <div className="eyebrow" style={{ color: 'var(--green)' }}>
-            MODO FACILITADOR · EXTENSÃO ACE UNIEURO
+            MODO FACILITADOR · EXTENSÃO ACE CEUB
           </div>
           <h3 style={{ fontFamily: 'var(--fd)', fontSize: '1.65rem', margin: '4px 0 0' }}>
             Registro de Impacto em Oficina Presencial

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import HeroPhone from '@/components/HeroPhone';
 import HomeScoreBanner from '@/components/HomeScoreBanner';
 
@@ -23,7 +24,7 @@ export default function Home() {
             <div className="reveal vis">
               <span className="eyebrow">
                 <span className="dot" aria-hidden="true" />
-                Vero Cidadania Digital · ACE 4º Semestre UNIEURO
+                Vero Cidadania Digital · ACE 4º Semestre CEUB
               </span>
               <h1 className="display" id="heroTitle">
                 Segurança digital que <em>todo mundo</em> entende. Proteção real para qualquer{' '}
@@ -293,15 +294,10 @@ export default function Home() {
         </section>
       </main>
 
-      <footer>
-        <div className="wrap">
-          <span>
-            Vero · Cidadania Digital (ACE - 4º Semestre) · Fellipe de Castro &amp; Jhonatgan
-            Magalhaes · UNIEURO
-          </span>
-          <span>Motor educativo aberto para famílias, comércios e desenvolvedores.</span>
-        </div>
-      </footer>
+      <Footer
+        leftContent="Vero · Cidadania Digital (ACE - 4º Semestre) · Fellipe de Castro & Jhonatgan Magalhaes · CEUB"
+        rightText="Motor educativo aberto para famílias, comércios e desenvolvedores"
+      />
     </>
   );
 }

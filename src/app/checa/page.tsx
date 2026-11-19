@@ -1,4 +1,5 @@
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import ChecaTool from '@/components/ChecaTool';
 import Link from 'next/link';
 
@@ -41,12 +42,10 @@ export default function ChecaPage() {
         </div>
       </main>
 
-      <footer>
-        <div className="wrap">
-          <span>Vero · Projeto de Extensão Universitária (ACE - 4º Semestre) · UNIEURO</span>
-          <span>Todas as ferramentas operam com privacidade por design (k-anonymity).</span>
-        </div>
-      </footer>
+      <Footer
+        leftContent="Vero · Projeto de Extensão Universitária (ACE - 4º Semestre) · CEUB"
+        rightText="Todas as ferramentas operam com privacidade por design (k-anonymity)"
+      />
     </>
   );
 }

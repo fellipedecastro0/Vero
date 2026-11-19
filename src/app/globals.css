@@ -484,8 +484,12 @@ pre{margin:0;padding:18px 20px;font-family:var(--fm);font-size:13.5px;line-heigh
 .final .h2{margin:16px auto 0;font-size:clamp(2.6rem,6vw,5rem)}
 .final .sub{margin:20px auto 0}
 .final .ctas{justify-content:center}
-footer{background:#070D0B;color:#7C8F86;font-size:.88rem}
-footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-top:26px;padding-bottom:26px}
+footer{background:#070D0B;color:#93A89E;font-size:.88rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px;padding-top:26px;padding-bottom:26px}
+.foot-right{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.gh-pill{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;background:#12201B;border:1px solid #2A4037;color:#E7F2EC;font-weight:700;font-size:.84rem;text-decoration:none;transition:border-color .15s,background .15s,color .15s}
+.gh-pill:hover{border-color:var(--mint);background:#182C25;color:#fff}
+.gh-pill .ic{width:17px;height:17px;color:var(--mint2)}
 
 /* calm mode */
 .calm .decor,.calm .ticker,.calm .nav{display:none}
